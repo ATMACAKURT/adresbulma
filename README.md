@@ -34,14 +34,3 @@ python src/ptt-pk/fetch.py
 #### Dipnot
 
 - <b>Aktarilmis Sql Dosyalari</b> dizini altından istediğiniz sql dosyasını veritabanı oluşturup aktarabilirsiniz.
-
-##### Aktardıktan sonra aşağıdaki sql komutlarını çalıştır:
-
-```
-update iller set il_adi = replace(il_adi, 'i̇', 'i');
-update ilceler set ilce_adi = replace(ilce_adi, 'i̇', 'i');
-update semtler set semt_adi = replace(semt_adi, 'i̇', 'i');
-update mahalleler set mahalle_adi = replace(mahalle_adi, 'i̇', 'i');
-```
-
-##### Bu sql komutlarını i harfini düzeltmek için yapıyoruz.
