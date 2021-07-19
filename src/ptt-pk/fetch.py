@@ -10,7 +10,7 @@ connection = pymysql.connect(host='localhost',
 cursor = connection.cursor()
 
 try:
-    wb = load_workbook('data/pk_list_12.05.2021.xlsx')
+    wb = load_workbook('data/pk_list_24.06.2021.xlsx')
     ws = wb.active
 	
     lower_map = { ord(u'I'): u'ı' }
@@ -39,8 +39,7 @@ try:
         regions[city][district][neighborhood][part] = postal_code
 
     for city in regions.keys():
-        city_name = city.translate(lower_map).title().strip()
-        city_name = city_name.replace('i̇', 'i')
+        city_name = city.translate(lower_map).title().strip().replace('i̇', 'i')
 
         with connection.cursor() as cursor:
             sql = "INSERT INTO `iller` (`il_adi`) VALUES (%s);"
@@ -49,8 +48,7 @@ try:
             city_id = cursor.lastrowid
 
             for district in regions[city].keys():
-                district_name = district.translate(lower_map).title().strip()
-                district_name = district_name.replace('i̇', 'i')
+                district_name = district.translate(lower_map).title().strip().replace('i̇', 'i')
 
                 with connection.cursor() as cursor:
                     sql = "INSERT INTO `ilceler` (`il_id`, `ilce_adi`) VALUES (%s, %s);"
@@ -59,8 +57,7 @@ try:
                     district_id = cursor.lastrowid
 
                     for neighborhood in regions[city][district].keys():
-                        neighborhood_name = neighborhood.translate(lower_map).title().strip()
-                        neighborhood_name = neighborhood_name.replace('i̇', 'i')
+                        neighborhood_name = neighborhood.translate(lower_map).title().strip().replace('i̇', 'i')
 
                         with connection.cursor() as cursor:
                             sql = "INSERT INTO `semtler` (`ilce_id`, `semt_adi`) VALUES (%s, %s);"
@@ -69,8 +66,7 @@ try:
                             neighborhood_id = cursor.lastrowid
 
                             for part in regions[city][district][neighborhood].keys():
-                                part_name = part.translate(lower_map).title().strip()
-                                part_name = part_name.replace('i̇', 'i')
+                                part_name = part.translate(lower_map).title().strip().replace('i̇', 'i')
 
                                 with connection.cursor() as cursor:
                                     sql = "INSERT INTO `mahalleler` (`semt_id`, `mahalle_adi`, `posta_kodu`) VALUES (%s, %s, %s);"
