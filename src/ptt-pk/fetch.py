@@ -10,7 +10,7 @@ connection = pymysql.connect(host='localhost',
 cursor = connection.cursor()
 
 try:
-    wb = load_workbook('data/pk_list_24.06.2021.xlsx')
+    wb = load_workbook('data/pk_list_24.09.2021.xlsx')
     ws = wb.active
 	
     lower_map = { ord(u'I'): u'ı' }
